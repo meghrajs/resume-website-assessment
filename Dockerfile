@@ -13,9 +13,7 @@ COPY . .
 RUN npm install cypress@12.17.2
 RUN npx cypress install
 
-# Set the Cypress record key as an environment variable
-ENV CYPRESS_RECORD_KEY="06fca1cf-58b2-44a5-ab9d-b23152ae1927"
 
 # Run the Cypress tests with recording enabled
-ENTRYPOINT ["npx", "cypress", "run", "--record", "--key", "${CYPRESS_RECORD_KEY}"]
+ENTRYPOINT ["npx", "cypress", "run", "--record", "--key", "06fca1cf-58b2-44a5-ab9d-b23152ae1927"]
 #ENTRYPOINT ["npm", "run"]
