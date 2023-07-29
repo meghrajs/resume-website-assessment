@@ -14,10 +14,10 @@ pipeline {
 		}
 		stage('Run Tests'){
 				steps{
-					script{
-						def commitMessage = sh(script:"git log --format=%B -n 1 ${env.GIT_COMMIT}", returnStdout:true).trim()
-						def commitAuthor = sh(script:"git log --format='%an' -n 1 ${env.GIT_COMMIT}", returnStdout:true).trim()
-						def commitEmail = sh(script:"git log --format='%ae' -n 1 ${env.GIT_COMMIT}", returnStdout:true).trim()
+					script {
+						def commitMessage = bat(script: 'git log --format=%B -n 1 %GIT_COMMIT%', returnStdout: true).trim()
+						def commitAuthor = bat(script: 'git log --format="%an" -n 1 %GIT_COMMIT%', returnStdout: true).trim()
+						def commitEmail = bat(script: 'git log --format="%ae" -n 1 %GIT_COMMIT%', returnStdout: true).trim()
 
 						def cypressVars = "COMMIT_INFO_BRANCH=${env.GIT_BRANCH} COMMIT_INFO_SHA=${env.GIT_COMMIT} COMMIT_INFO_REMOTE=${env.GIT_URL} COMMIT_INFO_MESSAGE=\"${commitMessage}\" COMMIT_INFO_AUTHOR=\"${commitAuthor}\" COMMIT_INFO_EMAIL=${commitEmail}"
 					}
