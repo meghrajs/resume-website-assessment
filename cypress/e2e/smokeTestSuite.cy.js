@@ -3,7 +3,8 @@ describe('resume-website test cases', () => {
 	beforeEach(() => {
     // Load the page before each test case
     //cy.visit('http://192.168.1.218:8081/resume-website-assessment');
-	cy.visit('http://localhost:8081/resume-website-assessment');
+	//cy.visit('http://localhost:8081/resume-website-assessment');
+	cy.visit('http://${Cypress.env("RUNNER_IP_ADDRESS")}:8081/resume-website-assessment');
 	cy.wait(2000);
   });
   

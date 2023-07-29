@@ -17,4 +17,10 @@ module.exports = defineConfig({
     json: false, // Set this to true if you want to generate JSON reports
 	screenshotOnRunFailure: true
   },
+  // Define environment variables here
+  env: {
+    RUNNER_IP_ADDRESS: process.env.RUNNER_IP_ADDRESS || "192.168.1.218", // Default to localhost if not provided
+    // Define other environment variables if needed
+    // VARIABLE_NAME: process.env.VARIABLE_NAME,
+  },
 });
