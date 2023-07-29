@@ -6,11 +6,18 @@ jobs:
     # Runs tests in parallel with matrix strategy https://docs.cypress.io/guides/guides/parallelization
     # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
     # Also see warning here https://github.com/cypress-io/github-action#parallel
+    
+    env: # Define environment variables for the job
+      RUNNER_IP_ADDRESS: ${{ steps.get_ip.outputs.ip }}
+      
     strategy:
       fail-fast: false # https://github.com/cypress-io/github-action/issues/48
       matrix:
         containers: [1, 2] # Uses 2 parallel instances
     steps:
+      - name: Get runner IP address
+        id: get_ip
+        run: echo "::set-output name=ip::$(hostname -I | cut -d' ' -f1)"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Cypress run
