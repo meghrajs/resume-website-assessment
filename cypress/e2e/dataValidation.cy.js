@@ -2,6 +2,7 @@
 describe('Resume Website - Data Validation', () => {
   const appUrl = 'http://' + Cypress.env('RUNNER_IP_ADDRESS') + ':8081/resume-website-assessment';
 		beforeEach(() => {
+		cy.fixture('resume-data').as('resumeData');
 		// Load the page before each test case
 		cy.visit(appUrl);
 		
