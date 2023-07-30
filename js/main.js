@@ -223,7 +223,7 @@
 		submitHandler: function(form) {
 
 			var sLoader = $('#submit-loader');
-
+/*
 			$.ajax({      	
 
 		      type: "POST",
@@ -259,7 +259,15 @@
 
 		      }
 
-	      });     		
+	      });     	
+	*/
+		 sLoader.fadeOut();
+      $('#message-warning').hide();
+      $('#contactForm').fadeOut();
+
+      // Remove display: none from the CSS for #message-success
+      $('#message-success').css("display", "block");
+	  
   		}
 
 	});
