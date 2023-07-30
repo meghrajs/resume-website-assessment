@@ -1,11 +1,13 @@
-const _ = require('lodash');
 
-describe('Resume Website - Intro Section', () => {
-  beforeEach(() => {
-    cy.fixture('resume-data').as('resumeData');
-    cy.visit('http://192.168.1.218:8081/resume-website-assessment');
-	cy.wait(2000);
-  });
+describe('Resume Website - Data Validation', () => {
+  const appUrl = 'http://' + Cypress.env('RUNNER_IP_ADDRESS') + ':8081/resume-website-assessment';
+		beforeEach(() => {
+		cy.fixture('resume-data').as('resumeData');
+		// Load the page before each test case
+		cy.visit(appUrl);
+		
+		cy.wait(4000);
+	});
 
   it('should display the intro section with the correct content', () => {
     cy.get('@resumeData').then((resumeData) => {

@@ -1,10 +1,11 @@
-describe('Resume Website - Negative Test Scenarios', () => {
-  beforeEach(() => {
-    // Load the page before each test case
-    cy.visit('http://192.168.1.218:8081/resume-website-assessment');
-	
-	cy.wait(4000);
-  });
+describe('Resume Website - Negative Test Scenarios - Test Data File is Missing', () => {
+  const appUrl = 'http://' + Cypress.env('RUNNER_IP_ADDRESS') + ':8081/resume-website-assessment/negative_MissingTestData.html';
+		beforeEach(() => {
+		// Load the page before each test case
+		cy.visit(appUrl);
+		
+		cy.wait(4000);
+	});
   
   it('Displays an error message for missing cypress/fixtures/resume-data.json', () => {
     // Stub the fetch request to return a 404 response
