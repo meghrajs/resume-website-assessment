@@ -1,10 +1,11 @@
 describe('Resume Website - Contact Form Validation', () => {
-  beforeEach(() => {
-    // Load the page before each test case
-    cy.visit('http://192.168.1.218:8081/resume-website-assessment');
-	
-	cy.wait(4000);
-  });
+  const appUrl = 'http://' + Cypress.env('RUNNER_IP_ADDRESS') + ':8081/resume-website-assessment';
+		beforeEach(() => {
+		// Load the page before each test case
+		cy.visit(appUrl);
+		
+		cy.wait(4000);
+	});
 
   it('should access and fill all fields in the contact form', () => {
     // Scroll to the contact form
