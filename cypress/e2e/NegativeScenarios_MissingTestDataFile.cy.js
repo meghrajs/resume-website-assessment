@@ -1,8 +1,8 @@
 describe('Resume Website - Negative Test Scenarios - Test Data File is Missing', () => {
-  const appUrl = 'http://' + Cypress.env('RUNNER_IP_ADDRESS') + ':8081/resume-website-assessment/negative_MissingTestData.html';
+ 
 		beforeEach(() => {
 		// Load the page before each test case
-		cy.visit(appUrl);
+		cy.visit('http://localhost:8081/resume-website-assessment/negative_MissingTestData.html');
 		
 		cy.wait(4000);
 	});
