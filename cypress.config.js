@@ -1,11 +1,13 @@
 const { defineConfig } = require("cypress");
 
+
 module.exports = defineConfig({
 	projectId: 'ytvb8d',
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+	baseUrl: "http://localhost:8081/resume-website-assessment",
   },
   reporter: "cypress-multi-reporters",
   defaultCommandTimeout: 10000,
@@ -19,9 +21,5 @@ module.exports = defineConfig({
 	screenshotOnRunFailure: true
   },
   // Define environment variables here
-  env: {
-    RUNNER_IP_ADDRESS: process.env.RUNNER_IP_ADDRESS || "192.168.1.218", // Default to localhost if not provided
-    // Define other environment variables if needed
-    // VARIABLE_NAME: process.env.VARIABLE_NAME,
-  },
+  
 });

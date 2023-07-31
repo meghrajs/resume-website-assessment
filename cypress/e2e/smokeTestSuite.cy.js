@@ -1,9 +1,8 @@
 describe('resume-website test cases', () => {
 	
-	const appUrl = 'http://' + Cypress.env('RUNNER_IP_ADDRESS') + ':8081/resume-website-assessment';
 		beforeEach(() => {
 		// Load the page before each test case
-		cy.visit(appUrl);
+		cy.visit('/');
 		
 		cy.wait(4000);
 	});

@@ -1,10 +1,10 @@
 
 describe('Resume Website - Data Validation', () => {
-  const appUrl = 'http://' + Cypress.env('RUNNER_IP_ADDRESS') + ':8081/resume-website-assessment';
+ 
 		beforeEach(() => {
 		cy.fixture('resume-data').as('resumeData');
 		// Load the page before each test case
-		cy.visit(appUrl);
+		cy.visit('/');
 		
 		cy.wait(4000);
 	});
@@ -21,7 +21,19 @@ describe('Resume Website - Data Validation', () => {
     });
   });
   
-  it('should display the about section with the correct content', () => {
+  it('should display the about me section with the correct content', () => {
+	  // Click on the menu toggle to expand the navigation menu
+    cy.get('a.menu-toggle').click();
+
+    // Ensure that the navigation menu is visible before clicking on "Resume"
+    cy.get('ul.main-navigation').should('be.visible');
+
+    // Click on "Resume" link in the navigation menu
+    cy.get('ul.main-navigation').contains('About').click();
+
+    // Wait for a moment to allow the page to scroll to the resume section
+    cy.wait(1000);
+	
     cy.get('@resumeData').then((resumeData) => {
       cy.get('#introduction').should('have.text', resumeData.introducton.statement);
 
@@ -40,6 +52,18 @@ describe('Resume Website - Data Validation', () => {
   });
   
   it('should display the resume section with the correct content', () => {
+	  // Click on the menu toggle to expand the navigation menu
+    cy.get('a.menu-toggle').click();
+
+    // Ensure that the navigation menu is visible before clicking on "Resume"
+    cy.get('ul.main-navigation').should('be.visible');
+
+    // Click on "Resume" link in the navigation menu
+    cy.get('ul.main-navigation').contains('Resume').click();
+
+    // Wait for a moment to allow the page to scroll to the resume section
+    cy.wait(1000);
+	
     cy.get('@resumeData').then((resumeData) => {
       cy.get('#introduction').should('have.text', resumeData.introducton.statement);
 
