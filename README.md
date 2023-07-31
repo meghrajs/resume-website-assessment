@@ -35,6 +35,8 @@ This section describes the organization of the project and provides an overview 
       * NegativeScenarios_WrongFormatTestdataFile.cy.js
     
 * index.html
+* js/
+  * script.js  
 * images/
   * intro-bg.jpg
 * cypress.config.json
