@@ -33,10 +33,7 @@ This section describes the organization of the project and provides an overview 
       * contactFormValidation.cy.js
       * NegativeScenarios_MissingTestDataFile.cy.js
       * NegativeScenarios_WrongFormatTestdataFile.cy.js
-    * plugins/
-      * index.js
-    * support/
-      * commands.js
+    
 * index.html
 * images/
   * intro-bg.jpg
@@ -51,8 +48,6 @@ This section describes the organization of the project and provides an overview 
 
    - `fixtures/`: Contains test data fixtures used in Cypress tests.
    - `e2e/`: Contains test suites (test files) written in Cypress.
-   - `plugins/`: Contains custom Cypress plugins if any.
-   - `support/`: Contains custom support files like commands and index files.
 
 2. `node_modules/`: Contains the dependencies installed by Node.js package manager (`npm install`).
 
