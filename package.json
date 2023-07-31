@@ -1,7 +1,15 @@
 {
+  "name": "Single Page Resume Website Assessment",
+  "version": "1.0.0",
+  "description": "Building a single page Resume Website that can be deployed to apacher server on docker container",
+  "main": "index.js",
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress run",
+	"build": "docker build -t resume-website-assessment . ",
+    "start": "docker run -dit --name resume-website-assessment -p 8081:80 resume-website-assessment",
+    "cy:open": "cypress open"
   },
+  "author": "Meghraj Singh <meghrajwithandroid@gmail.com>",
   "devDependencies": {
     "cypress": "^12.17.2",
     "mocha": "^10.2.0",
