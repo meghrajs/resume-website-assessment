@@ -19,7 +19,7 @@ This is an assessment project for building and testing a single-page resume webs
 * Single Page Resume Website with Navigation Options
 * Separate sections are created to display candidate data
 * The '[resume-data.json](resume-data.json)' file provides the data used to dynamically display your personalized resume on the website. Modify this file to showcase your unique skills, experiences, and achievements
-* Contact us form fill details and get in touch
+* Contact us form fill in details and get in touch
 
 ## Project Structure
 This section describes the organization of the project and provides an overview of the main files and folders.
