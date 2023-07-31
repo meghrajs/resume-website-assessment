@@ -1,13 +1,4 @@
 # Single Page Resume Website
-- [Introduction](#introduction)
-- [Installation]()
-  - [Running Locally](#installation)
-  - [Docker Container Setup](#docker-container-setup)
-- [Application Preview](#application-preview)
-- [Application Features](#application-features)
-- [Testing Framework and Structure](#testing-framework-and-structure)
-- [CI/CD (Jenkins)](#CI/CD(Jenkins))
-- [Test Scenario Pass/Fail Dashboard](#test-scenario-passfail-dashboard)
 
 
 ## Introduction
@@ -22,7 +13,7 @@ This is an assessment project for building and testing a single-page resume webs
 * If you are not updating the port, kindly use the default port "8080" in the URL.
 
 ### Application Preview
-![Screenshot](application_preview.png)
+![Screenshot](Images%20for%20Documentation/application_preview.png)
 
 ### Application Features
 * Single Page Resume Website with Navigation Options
@@ -40,19 +31,58 @@ The Single Page Resume Website project utilizes Cypress as the chosen testing fr
 * Snapshots: Cypress automatically takes screenshots and records videos during test execution, making it easier to diagnose and debug failures.
 * Shorter Feedback Cycles: With its fast and efficient test execution, Cypress provides developers with quick feedback on their changes, helping them identify and fix issues early in the development process.
 
-Testing artifacts related to test cases/scenarios can be found within the '[Testing Artifacts](Testing Artifacts)' directory of the project.
+## Project Structure
+This section describes the organization of the project and provides an overview of the main files and folders.
+* resume-website-assessment/
+  * cypress/
+    * fixtures/
+      * resume-data.json
+    * e2e/
+      * smokeTestSuite.cy.js
+      * dataValidation.cy.js
+      * contactFormValidation.cy.js
+      * NegativeScenarios_MissingTestDataFile.cy.js
+      * NegativeScenarios_WrongFormatTestdataFile.cy.js
+    * plugins/
+      * index.js
+    * support/
+      * commands.js
+* index.html
+* images/
+  * intro-bg.jpg
+* cypress.config.json
+* package.json
+* README.md
+* requirements.docx
+
+### Description of Key Files and Folders
+
+1. `cypress/`: This folder contains all the Cypress test files and configurations.
+
+   - `fixtures/`: Contains test data fixtures used in Cypress tests.
+   - `e2e/`: Contains test suites (test files) written in Cypress.
+   - `plugins/`: Contains custom Cypress plugins if any.
+   - `support/`: Contains custom support files like commands and index files.
+
+2. `node_modules/`: Contains the dependencies installed by Node.js package manager (`npm install`).
+
+3. `cypress.config.json`: The configuration file for Cypress, which sets various options for test execution.
+
+4. `package.json`: The project's package file that includes dependencies, scripts, and other details.
+
+Testing artifacts related to test cases/scenarios can be found within the '[Testing Artifacts](Testing%20Artifacts)' directory of the project.
 
 ### CI/CD(Jenkins)
-Jenkins is configured/set-up locally and connected via GIT Plugin to fetch and trigger automated test cases.
+Jenkins is configured/set-up locally and connected via GIT Plugin to fetch and trigger automated test cases on latest code.
 
 ### Test Scenario Pass/Fail Dashboard
 Cypress Dashboard ("https://cloud.cypress.io/") is configured to keep track of each run and provides visibility of pass/fail along with details like:
 * GIT Branch from which Test Scenario was Executed
 * Execution Date Time
 * Pass/Fail Status, along with failure message and screenshot
-![Screenshot](cypress_dashboard_all_branches.png)
-![Screenshot](cypress_dashboard_test_runs.png)
-![Screenshot](cypress_dashboard_test_scenario_run.png)
+![Screenshot](Images%20for%20Documentation/cypress_dashboard_all_branches.png)
+![Screenshot](Images%20for%20Documentation/cypress_dashboard_test_runs.png)
+![Screenshot](Images%20for%20Documentation/cypress_dashboard_test_scenario_run.png)
 
 ## Docker Container Setup
 Make sure Docker is installed on your machine and also below packages are available.
@@ -70,17 +100,35 @@ Run the following command in the project root directory, expecting the previous 
  ``` 
 npm run build
  ```
+
+this build command will be reading the script written in Dockerfile which is creating a docker image from httpd2.4 which is the official Apache HTTP Server image and will have all the necessary things to run an Apache server. The copy statement will copy all project-related files to the htdocs folder of the apache server on the container.
+
+ ```
+FROM httpd:2.4
+RUN echo "ServerName localhost" >> /usr/local/apache2/conf/httpd.conf
+COPY . /usr/local/apache2/htdocs/resume-website-assessment
+EXPOSE 81
+ ```
+
 ### Starting Docker Container
 Run the following command in the project root directory, expecting the previous command is already executed and there were no errors
  ``` 
 npm start
  ```
+the command above is mapping to the instruction written in package.json which is equivalent to below command if run separately.
+ ``` 
+"start": "docker run -dit --name resume-website-assessment -p 8081:80 resume-website-assessment"
+ ```
+
 ### Opening Cypress and triggering test execution
-Run the following command in the project root directory, expecting the previous command is already executed and there were no errors
+Run the following command if you want to start the Cypress UI and then want to initiate tests yourself.
  ``` 
 npm run cy:open
  ```
-If you don't want to open the Cypress UI app and simply wants to trigger the test execution type below command, it will update test status within console.
+![Screenshot](Images%20for%20Documentation/Cypress%20View.png)
+### Running Tests from Local
+If you don't want to create a container and instead simply want to trigger the test execution type in the below command, it will update the test status within the console.
  ``` 
 npm test
  ```
+![Screenshot](Images%20for%20Documentation/local%20run%20from%20command%20line.png)
